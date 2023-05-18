@@ -48,16 +48,7 @@ public class App {
             return;
         }
 
-        // Send a command to the Arduino to start reading RFID cards
-        output = serialPort.getOutputStream();
-        try {
-            output.write("START".getBytes());
-            output.flush();
-        } catch (IOException e) {
-            System.err.println("Error: Could not write to serial port");
-            e.printStackTrace();
-            return;
-        }
+        
 
         // Connect to the SQL database
         String url = "jdbc:mysql://127.0.0.1:3306/bank";
