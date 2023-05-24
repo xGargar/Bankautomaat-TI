@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guidesign.Controller">
+    <children>
+        <ImageView fitHeight="834.0" fitWidth="1194.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@image/menu.png" />
+            </image>
+        </ImageView>
+      <Button layoutX="71.0" layoutY="238.0" mnemonicParsing="false" onAction="#saldoOpvragen" opacity="0.0" text="Saldo opvragen">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="65.0" layoutY="378.0" mnemonicParsing="false" onAction="#geldOpnemen" opacity="0.0" text="Geld opnemen">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="65.0" layoutY="653.0" mnemonicParsing="false" opacity="0.0" text="Afbreken">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="999.0" layoutY="238.0" mnemonicParsing="false" onAction="#zeventig" opacity="0.0" text="70">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
