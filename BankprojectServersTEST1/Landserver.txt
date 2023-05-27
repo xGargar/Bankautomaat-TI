@@ -1,0 +1,60 @@
+const http = require('http');
+
+const httpHost = '145.24.222.194';
+const httpPort = 8443;
+
+const httpRequestListener = function (req, res) {
+  if (req.url === '/api/getBalance' && req.method === 'POST') {
+    let data = '';
+
+    req.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    req.on('end', () => {
+      console.log('Received data from Express server:', data);
+
+      // Forward the data to the desired endpoint in the HTTP server
+      const options = {
+        host: 'localhost',
+        port: 8080,
+        path: '/data',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const httpReq = http.request(options, (httpRes) => {
+        let responseData = '';
+
+        httpRes.on('data', (chunk) => {
+          responseData += chunk;
+        });
+
+        httpRes.on('end', () => {
+          console.log('Received response from HTTP server:', responseData);
+          res.writeHead(200, { 'Content-Type': 'text/plain' });
+          res.end('Data received successfully');
+        });
+      });
+
+      httpReq.on('error', (error) => {
+        console.error('Error sending data to HTTP server:', error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Error sending data to HTTP server');
+      });
+
+      httpReq.write(data);
+      httpReq.end();
+    });
+  } else {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('HTTP server!');
+  }
+};
+
+const httpServer = http.createServer(httpRequestListener);
+httpServer.listen(httpPort, httpHost, () => {
+  console.log(`HTTP server is running on http://${httpHost}:${httpPort}`);
+});
